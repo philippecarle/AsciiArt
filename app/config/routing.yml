@@ -1,0 +1,5 @@
+ascii_art_analyzer:
+    resource: "@AsciiArtAnalyzerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
