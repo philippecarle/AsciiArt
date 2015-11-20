@@ -34,7 +34,9 @@ class FontAnalyzerCommand extends ContainerAwareCommand
         $fontFile = $kernel->locateResource('@AsciiArtAnalyzerBundle/Resources/fonts/courier.ttf');
         foreach ($chars as $char) {
             $manager = new ImageManager(['driver' => 'imagick']);
-            $image = $manager->make(imagecreatetruecolor(200,200));
+            $im = new \Imagick();
+            $im->newImage(200,200,'#FFFFFF');
+            $image = $manager->make($im);
             $image->fill('#FFFFFF');
             $image->text($char, 100, 190, function(AbstractFont $font) use ($fontFile) {
                 $font->file($fontFile);
@@ -47,9 +49,12 @@ class FontAnalyzerCommand extends ContainerAwareCommand
             for($x=1; $x<= 200; $x++) {
                 for($y=1; $y<= 200; $y++) {
                     $imagick = $image->getCore();
-                    echo $imagick->getImagePixelColor($x, $y);
+                    $rgb = $imagick->getImagePixelColor($x, $y)->getColor();
+                    $colors+= ($rgb['r'] + $rgb['g'] + $rgb['b']) / 3;
                 }
             }
+            $averageColor = $colors / (200*200);
+            $output->writeln("$char : $averageColor");
 
 
         }
