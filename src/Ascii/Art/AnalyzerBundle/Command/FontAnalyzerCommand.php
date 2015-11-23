@@ -57,7 +57,6 @@ class FontAnalyzerCommand extends ContainerAwareCommand
                 $font->size($fontSize);
                 $font->align('center');
             });
-            $image->save("./files/$char.jpg");
 
 	        $datas[$char] = $this->getAverageLuminosity($image->getCore());
         }
@@ -72,10 +71,21 @@ class FontAnalyzerCommand extends ContainerAwareCommand
 
 	    ksort($values);
 
-	    foreach($values as $lum => $char) {
+	    $finalValues = [];
+	    foreach(range(0,255) as $lum) {
+		    if(!array_key_exists($lum, $values)) {
+			    $finalValues[$lum] = $this->getClosest($lum, $values);
+		    } else {
+			    $finalValues[$lum] = $values[$lum];
+		    }
+	    }
+
+
+	    foreach($finalValues as $lum => $char) {
 		    $obj = new Char($char, $lum);
 		    $em->persist($obj);
 	    }
+
 	    $em->flush();
 
     }
@@ -105,5 +115,23 @@ class FontAnalyzerCommand extends ContainerAwareCommand
 	private function scaleValue($value, $min, $max)
 	{
 		return ((($value - $min) * (255 - 0)) / ($max - $min)) + 0;
+	}
+
+	/**
+	 * @param $search
+	 * @param array $array
+	 * @return string
+	 */
+	private function getClosest($search, array $array)
+	{
+		$distances = [];
+		$keys = array_keys($array);
+
+		foreach ($keys as $key => $num)
+		{
+			$distances[$key] = abs($search - $num );
+		}
+
+		return $array[$keys[array_search(min($distances ), $distances)]];
 	}
 }
