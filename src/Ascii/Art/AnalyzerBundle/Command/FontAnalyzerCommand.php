@@ -23,7 +23,7 @@ class FontAnalyzerCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('font:analyze')
+            ->setName('ascii:font:analyze')
             ->setDescription('Analyze all characters and store them with associated grey value');
     }
 
