@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d628a61-752a-409f-af3b-f87ac098c8da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Resources/fonts/courier_bold.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Command/FontAnalyzerCommand.php" afterPath="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Command/FontAnalyzerCommand.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Command/Image2AsciiCommand.php" afterPath="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Command/Image2AsciiCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Repository/CharsRepository.php" afterPath="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Repository/CharsRepository.php" />
     </list>
     <ignored path="AsciiArt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,10 +47,11 @@
       <file leaf-file-name="Image2AsciiCommand.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Command/Image2AsciiCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22222222">
-              <caret line="60" column="36" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.8472222">
+              <caret line="129" column="69" selection-start-line="129" selection-start-column="69" selection-end-line="129" selection-end-column="69" />
               <folding>
                 <element signature="e#52#88#0#PHP" expanded="true" />
+                <element signature="e#1397#1426#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -78,8 +77,8 @@
       <file leaf-file-name="CharsRepository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Repository/CharsRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+            <state vertical-scroll-proportion="-15.0">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding>
                 <element signature="e#55#89#0#PHP" expanded="true" />
               </folding>
@@ -121,8 +120,8 @@
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Entity/Chars.php" />
         <option value="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Entity/Char.php" />
-        <option value="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Repository/CharsRepository.php" />
         <option value="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Command/FontAnalyzerCommand.php" />
+        <option value="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Repository/CharsRepository.php" />
         <option value="$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Command/Image2AsciiCommand.php" />
       </list>
     </option>
@@ -596,6 +595,7 @@
           <caret line="108" column="50" selection-start-line="108" selection-start-column="50" selection-end-line="108" selection-end-column="50" />
           <folding>
             <element signature="e#52#88#0#PHP" expanded="true" />
+            <element signature="e#1397#1426#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -687,16 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Repository/CharsRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-          <folding>
-            <element signature="e#55#89#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Entity/Char.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -728,12 +718,23 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Repository/CharsRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.0">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="e#55#89#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Ascii/Art/AnalyzerBundle/Command/Image2AsciiCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22222222">
-          <caret line="60" column="36" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.8472222">
+          <caret line="129" column="69" selection-start-line="129" selection-start-column="69" selection-end-line="129" selection-end-column="69" />
           <folding>
             <element signature="e#52#88#0#PHP" expanded="true" />
+            <element signature="e#1397#1426#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

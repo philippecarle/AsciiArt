@@ -14,18 +14,21 @@ use Ascii\Art\AnalyzerBundle\Entity\Char;
 class CharsRepository extends EntityRepository
 {
 	/**
+	 * @param bool $inverted
 	 * @return array
 	 */
-	public function getAllChars()
+	public function getAllChars($inverted = false)
 	{
 		$chars = $this->findAll();
 
 		$datas = [];
+
 		/**
 		 * @var Char $char
 		 */
 		foreach ($chars as $char) {
-			$datas[$char->getLuminosity()] = $char->getAsciiChar();
+			$index = $inverted ? 255 - $char->getLuminosity() : $char->getLuminosity();
+			$datas[$index] = $char->getAsciiChar();
 		}
 
 		return $datas;

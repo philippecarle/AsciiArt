@@ -40,6 +40,13 @@ class Image2AsciiCommand extends ContainerAwareCommand
 				'Output : text or image',
 				'text'
 			)
+			->addOption(
+				'inverted',
+				'i',
+				InputOption::VALUE_OPTIONAL,
+				'Inverted : true or false',
+				'false'
+			)
 		;
 	}
 
@@ -54,11 +61,15 @@ class Image2AsciiCommand extends ContainerAwareCommand
 			->getContainer()
 			->get('doctrine.orm.entity_manager');
 
-		$chars = $em->getRepository('AsciiArtAnalyzerBundle:Char')->getAllChars();
+		$inverted = filter_var($input->getOption('inverted'), FILTER_VALIDATE_BOOLEAN);
+		$chars = $em->getRepository('AsciiArtAnalyzerBundle:Char')->getAllChars($inverted);
 
 		$manager = new ImageManager(['driver' => 'imagick']);
+
 		$image = $manager
-			->make("files/goldengate.jpg");
+			->make("files/image.jpg")
+		;
+
 
 		/**
 		 * @var \Imagick $imagick
@@ -81,13 +92,13 @@ class Image2AsciiCommand extends ContainerAwareCommand
 		}
 
 		if($input->getOption('output') == 'image') {
-			$this->asciiToImage($ascii);
+			$this->asciiToImage($ascii, $inverted);
 		} else {
 			echo implode("\n", $ascii);
 		}
 	}
 
-	private function asciiToImage(array $ascii)
+	private function asciiToImage(array $ascii, $inverted = false)
 	{
 		$fontFile = $this
 			->getContainer()
@@ -99,7 +110,12 @@ class Image2AsciiCommand extends ContainerAwareCommand
 
 		$manager = new ImageManager(['driver' => 'imagick']);
 		$im = new \Imagick();
-		$im->newImage(self::CHAR_SIZE * count(str_split($ascii[0])), self::CHAR_SIZE * count($ascii), '#FFFFFF');
+		$im->newImage(
+			self::CHAR_SIZE * count(str_split($ascii[0])),
+			self::CHAR_SIZE * count($ascii),
+			$inverted ? '#000000' : '#FFFFFF'
+		);
+
 		$image = $manager->make($im);
 
 		foreach($ascii as $index => $row) {
@@ -108,9 +124,10 @@ class Image2AsciiCommand extends ContainerAwareCommand
 					$char,
 					self::CHAR_SIZE * ($pos + 1) - self::CHAR_SIZE/2,
 					self::CHAR_SIZE/2 + $index * self::CHAR_SIZE,
-					function(AbstractFont $font) use ($fontFile, $fontSize) {
+					function(AbstractFont $font) use ($fontFile, $fontSize, $inverted) {
 						$font->file($fontFile);
 						$font->size($fontSize);
+						$font->color($inverted ? '#FFFFFF' : '#000000');
 						$font->align('center');
 					}
 				);
