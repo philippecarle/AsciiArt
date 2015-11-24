@@ -34,7 +34,8 @@ class FontAnalyzerCommand extends ContainerAwareCommand
     {
         $em = $this
             ->getContainer()
-            ->get('doctrine.orm.entity_manager');
+            ->get('doctrine.orm.entity_manager')
+        ;
 
         $chars = [];
         for ($i = 33; $i < 126; $i++) {

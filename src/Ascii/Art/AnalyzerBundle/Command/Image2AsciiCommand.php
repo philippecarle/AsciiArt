@@ -55,18 +55,18 @@ class Image2AsciiCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $newWidth = $input->getOption('size');
-
-        $em = $this
-            ->getContainer()
-            ->get('doctrine.orm.entity_manager');
-
         $inverted = filter_var($input->getOption('inverted'), FILTER_VALIDATE_BOOLEAN);
-        $chars = $em->getRepository('AsciiArtAnalyzerBundle:Char')->getAllChars($inverted);
+
+        $chars = $this
+            ->getContainer()
+            ->get('doctrine.orm.entity_manager')
+            ->getRepository('AsciiArtAnalyzerBundle:Char')
+            ->getAllChars($inverted)
+        ;
 
         $manager = new ImageManager(['driver' => 'imagick']);
 
-        $image = $manager
-            ->make("files/image.jpg");
+        $image = $manager->make("files/image.jpg");
 
 
         /**
@@ -107,7 +107,7 @@ class Image2AsciiCommand extends ContainerAwareCommand
             ->get('kernel')
             ->locateResource('@AsciiArtAnalyzerBundle/Resources/fonts/courier_bold.ttf');
 
-        $fontSize = self::CHAR_SIZE * 1.2;
+        $fontSize = self::CHAR_SIZE * 1.1;
 
         $manager = new ImageManager(['driver' => 'imagick']);
         $im = new \Imagick();
