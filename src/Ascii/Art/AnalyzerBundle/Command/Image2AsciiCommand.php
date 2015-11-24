@@ -98,6 +98,10 @@ class Image2AsciiCommand extends ContainerAwareCommand
 		}
 	}
 
+	/**
+	 * @param array $ascii
+	 * @param bool|false $inverted
+	 */
 	private function asciiToImage(array $ascii, $inverted = false)
 	{
 		$fontFile = $this
